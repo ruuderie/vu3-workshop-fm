@@ -4,7 +4,77 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{{title}}</title>
   </head>
-  <body></body>
+  <body>
+
+    <div id="app">
+      <div class="" role="group">
+        <ul>
+          <li  v-for="film in listOfFilms">
+            <h1 class="ipc-lockup-overlay ipc-focusable" aria-label="View title page for {{list.name}}">
+              {{film.name}}
+            </h1>
+            <h3>{{film.director}}</h3>
+            <h3>{{film.year}}</h3>
+            <ul>
+              <li v-for="star in film.stars">
+                <p> </p>{{star}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+
+        </div>
+      </div>
+
+          
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+
+      const app = createApp({
+        data() {
+          return {
+            title: 'Hello it works',
+            listOfFilms: [
+              {
+                name: "Terminator 2",
+                director: 'James Cameron',
+                year: "1992",
+                stars:["arnold schwarzenegger","linda hamilton"]
+              },
+              {
+                name: "Once Upon a Time in Hollywood",
+                director: 'Quentin Tarantino',
+                year: "2020",
+                stars:["Brad Pitt","Leonardo DiCaprio"]
+              },
+              {
+                name: "Wolf of Wall Street",
+                director: 'Martin Scorcese',
+                year: "2013",
+                stars:["Leonardo DiCaprio","Jonah Hill"]
+              },
+              {
+                name: "Children of Men",
+                director: 'Alfonso Cuaron',
+                year: "2006",
+                stars:["Owen Wilson",""]
+              },
+              {
+                name: "Fifth Element",
+                director: 'Luc Besson',
+                year: "1997",
+                stars:["Bruce Willis","Mila Jovovich"]
+              }
+            ]
+          }
+        }
+      })
+      app.mount('#app');
+    </script>
+  </body>
 </html>
