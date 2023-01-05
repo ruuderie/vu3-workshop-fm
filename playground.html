@@ -6,5 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Playground — Complete Intro to Vue 3</title>
   </head>
-  <body></body>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <p v-if="message.length % 2">Even: {{message.toUpperCase() }} </p>
+      <p v-else>Odd: {{message }} </p>
+      <ul>
+        <li v-for="item in items">
+          {{ item.message }}
+        </li>
+      </ul>
+
+    </div>
+    <h1>Hello Front-End Master</h1>
+    <script>
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            message: "Hello its working!",
+            items: [{ message: 'Foo' }, { message: 'Bar' }]
+
+          }
+        }
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>
