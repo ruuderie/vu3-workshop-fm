@@ -1,8 +1,12 @@
 <script>
+import BaseFavorites from "./components/BaseFavorites.vue";
+
 export default {
-  data() {
+  components: { BaseFavorites },
+  data: () => {
     return {
       title: "Hello it works",
+      favoriteStars: [],
       listOfFilms: [
         {
           name: "Terminator 2",
@@ -76,8 +80,6 @@ export default {
           ],
         },
       ],
-      favoriteStars: [],
-      newStar: "",
     };
   },
   methods: {
@@ -94,9 +96,6 @@ export default {
     totalFilms() {
       return this.listOfFilms.length;
     },
-    totalStarsInFavorite() {
-      return this.favoriteStars.length;
-    },
   },
 };
 </script>
@@ -107,8 +106,14 @@ export default {
     <h1 v-else>Films I like</h1>
     <div class="" role="group">
       <p>Total Films: {{ totalFilms }}</p>
-      <p>Total Favorites {{ totalStarsInFavorite }}</p>
-
+      <form @submit.prevent="addStar">
+      <label>
+        Enter the name of your favorite star:
+        <input type="text" v-model="newStar" />
+      </label>
+      <button type="submit">Add Star</button>
+    </form>
+      <base-favorites :favoriteStars="favoriteStars" />
       <ul>
         <li
           v-for="(film, index) in listOfFilms"
@@ -128,23 +133,13 @@ export default {
               <p>{{ star.name }}</p>
               <p>{{ star.age }}</p>
 
-              <button @click="addToFavorites(star)">Add to Favorite</button>
+              <button id="addToFavorites" @click="addToFavorites(star)">
+                Add to Favorite
+              </button>
             </li>
           </ul>
         </li>
       </ul>
-      <div>
-        <form @submit.prevent="addStar">
-          <label>
-            Enter the name of your favorite star:
-            <input type="text" v-model="newStar" />
-          </label>
-          <button type="submit">Add Star</button>
-        </form>
-        <ul>
-          <li v-for="star in favoriteStars" :key="star">{{ star }}</li>
-        </ul>
-      </div>
     </div>
   </div>
 </template>
