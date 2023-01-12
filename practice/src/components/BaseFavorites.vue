@@ -1,12 +1,10 @@
 <script>
-import { onMounted, ref } from "vue";
-
 export default {
   props: {
     favoriteStars: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => {
     return {
@@ -18,6 +16,7 @@ export default {
       return this.favoriteStars.length;
     },
   },
+  emits: ["add-star"],
 };
 </script>
 
@@ -28,6 +27,13 @@ export default {
     <ul>
       <li v-for="star in favoriteStars" :key="star">{{ star }}</li>
     </ul>
+    <form @submit.prevent="addStar">
+      <label>
+        Enter the name of your favorite star:
+        <input type="text" v-model="newStar" />
+      </label>
+      <button @click="$emit('add-star', newStar)">Add Star</button>
+    </form>
   </div>
 </template>
 

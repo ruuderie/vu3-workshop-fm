@@ -85,10 +85,10 @@ export default {
   methods: {
     addToFavorites(star) {
       console.log(star);
-      this.favoriteStars.push(star);
+      this.favoriteStars.push(star.name);
     },
-    addStar() {
-      this.favoriteStars.push(this.newStar);
+    addStar(payload) {
+      this.favoriteStars.push(payload);
       this.newStar = "";
     },
   },
@@ -106,14 +106,8 @@ export default {
     <h1 v-else>Films I like</h1>
     <div class="" role="group">
       <p>Total Films: {{ totalFilms }}</p>
-      <form @submit.prevent="addStar">
-      <label>
-        Enter the name of your favorite star:
-        <input type="text" v-model="newStar" />
-      </label>
-      <button type="submit">Add Star</button>
-    </form>
-      <base-favorites :favoriteStars="favoriteStars" />
+ 
+      <base-favorites :favoriteStars="favoriteStars" @add-star="addStar"/>
       <ul>
         <li
           v-for="(film, index) in listOfFilms"
