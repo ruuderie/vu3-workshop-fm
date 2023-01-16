@@ -107,7 +107,9 @@ export default {
     <div class="" role="group">
       <p>Total Films: {{ totalFilms }}</p>
  
-      <base-favorites :favoriteStars="favoriteStars" @add-star="addStar"/>
+      <base-favorites :favoriteStars="favoriteStars" @add-star="addStar">
+        Add to favorites
+      </base-favorites>
       <ul>
         <li
           v-for="(film, index) in listOfFilms"

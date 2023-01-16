@@ -32,7 +32,7 @@ export default {
         Enter the name of your favorite star:
         <input type="text" v-model="newStar" />
       </label>
-      <button @click="$emit('add-star', newStar)">Add Star</button>
+      <button @click="$emit('add-star', newStar)"><slot/></button>
     </form>
   </div>
 </template>
