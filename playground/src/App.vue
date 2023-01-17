@@ -3,13 +3,14 @@ import UserCard from "./components/user-card.vue";
 import BaseCounter from "./components/base-counter.vue";
 import BaseButton from "./components/base-button.vue";
 import BaseLayout from "./components/base-layout.vue";
-
+import Pokedex from "./components/pokedex.vue";
 export default {
   components: {
     BaseButton,
     BaseCounter,
     BaseLayout,
     UserCard,
+    Pokedex
   },
   data() {
     return {
@@ -61,13 +62,13 @@ export default {
     changeName() {
       this.userData.name = "Charlie";
     },
-  },
+  }
 };
 </script>
 
 <template>
   <BaseLayout>
-    <template v-slot:sidebar> Aside </template>
+    <template v-slot:sidebar> Aside {{ regionName }} </template>
     <template v-slot:main>
       <UserCard :user="refinedUserData" @change-name="changeName" />
     </template>
@@ -75,8 +76,16 @@ export default {
       <BaseCounter />
     </template>
   </BaseLayout>
-  <BaseButton :left="true"></BaseButton>
+  <Suspense>
 
+    <Pokedex />
+    <template v-slot:fallback>  
+      ...Loading 
+    </template>
+
+</Suspense>
+
+  <BaseButton :left="true"></BaseButton>
   <hr />
   <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
   <p v-else>Odd: {{ message }}</p>
