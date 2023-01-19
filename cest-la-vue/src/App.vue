@@ -45,8 +45,6 @@ export default {
     <component :is="renderPage" />
     <template v-slot:fallback> Data is loading .... </template>
   </Suspense>
-  <!-- <HomePage v-if="currentPage === 'Home'" />
-  <LoginPage v-else /> -->
 </template>
 
 <style>
