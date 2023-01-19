@@ -1,33 +1,26 @@
-<script>
-import { computed, ref, reactive } from "vue";
-
-export default {
-  async setup() {
-    const regionName = ref("kanto");
-    const pokedex = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?limit=25"
-    ).then((response) => response.json());
-    const regionNameAllCaps = computed(() => {
-      return regionName.value.toUpperCase();
-    });
-    const state = reactive({
-      elementType: "Fire",
-    });
-    const elementTypeAllCaps = computed(() => {
-      return state.elementType.toUpperCase();
-    });
-    const changeRegionName = () => {
-      this.regionName = "Harkonen";
-    };
-    return {
-      regionName,
-      pokedex,
-      regionNameAllCaps,
-      elementTypeAllCaps,
-      changeRegionName,
-    };
+<script setup>
+import { computed, ref, reactive, defineProps, defineEmits } from "vue";
+const emits = defineEmits(["change-region"]);
+const props = defineProps({
+  region: {
+    type: String,
   },
-  methods: {},
+});
+const regionName = ref("kanto");
+const pokedex = await fetch("https://pokeapi.co/api/v2/pokemon?limit=25").then(
+  (response) => response.json()
+);
+const regionNameAllCaps = computed(() => {
+  return regionName.value.toUpperCase();
+});
+const state = reactive({
+  elementType: "Fire",
+});
+const elementTypeAllCaps = computed(() => {
+  return state.elementType.toUpperCase();
+});
+const changeRegionName = () => {
+  this.regionName = "Harkonen";
 };
 </script>
 

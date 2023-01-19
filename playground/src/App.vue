@@ -100,3 +100,9 @@ export default {
     </li>
   </ul>
 </template>
+
+<style >
+html{
+  background-color: papayawhip;
+}
+</style>
