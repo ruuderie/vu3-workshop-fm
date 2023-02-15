@@ -1,4 +1,6 @@
 <script>
+import {useItemTypeStore} from "@/stores/ItemTypeStore";
+
 export default {
   props: {
     user: {
@@ -6,10 +8,17 @@ export default {
       required: true,
     },
   },
+  setup(props) {
+    const itemType = useItemTypeStore();
+    return {
+      itemType,
+    };
+  },
 };
 </script>
 
 <template>
+  <h2>{{ itemType.type }}</h2>
   <li :class="$style['user-card']">
     <router-link :to="`/user/${user.name}`"
       >{{ user.name }}: {{ user.website }}</router-link
